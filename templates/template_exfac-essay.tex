@@ -82,11 +82,11 @@ $endif$
 $if(singlespacing)$
 $elseif(doublespacing)$
 \doublespacing
+\setstretch{2} % For Microsoft Word like spacing
 $else$
 \onehalfspacing
-$endif$
-
 \setstretch{1.5} % For Microsoft Word like spacing
+$endif$
 
 %Fix section spacing
 \usepackage[compact]{titlesec}
