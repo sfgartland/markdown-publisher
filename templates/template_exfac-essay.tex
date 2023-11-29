@@ -107,7 +107,13 @@ $endif$
 \fancypagestyle{plain}{%  the preset of fancyhdr 
     \fancyhf{} % clear all header and footer fields
     \fancyfoot[L]{\thedate}
+    $if(chicago-a)$
+    \fancyfoot[R]{Citation style: Chicago A}
+    $elseif(apa7)$
     \fancyfoot[R]{Citation style: APA 7}
+    $else$
+    \fancyfoot[R]{Citation style: APA 7}
+    $endif$
     \fancyfoot[C]{\thepage}
     \fancyhead[R]{\theauthor}
     \fancyhead[L]{$class$}
@@ -125,7 +131,14 @@ $endif$
 
 
 % Fixes bibliography
+$if(chicago-a)$
+\usepackage[backend=biber]{biblatex-chicago}
+$elseif(apa7)$
 \usepackage[style=apa]{biblatex}
+$else$
+\usepackage[style=apa]{biblatex}
+$endif$
+
 \addbibresource{C:/Users/sfgar/Desktop/Mitt bibliotek.bib}
 
 \begin{document}
