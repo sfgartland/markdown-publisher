@@ -60,8 +60,11 @@ $endif$
     pdfcreator={LaTeX via pandoc}
 }
 
-%\usepackage{xcharter} % Sets font
-\usepackage{mathptmx}
+$if(nicefont)$
+\usepackage{xcharter} % Sets font to a nice one
+$else$
+\usepackage{mathptmx} % Sets times new roman as the font
+$endif$
 \usepackage{amssymb} % Adds div symbols like \square
 
 % Add the option of syllogisms
