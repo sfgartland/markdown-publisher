@@ -6,7 +6,7 @@ authors = ["Severin Gartland <sfgartland@hotmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.9"
 typer = "^0.15.1"
 inquirer = "^3.4.0"
 

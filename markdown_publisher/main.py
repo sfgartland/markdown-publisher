@@ -135,12 +135,17 @@ def main(
 ):
     if file is None:
         file = selectFile([FileTypes.md])
+        assert file is not None, "No file selected"
+        assert file.suffix == ".md", "File must be a markdown file"
 
     if templatefile is None:
         templatefile = selectTemplate(file.parent)
+        assert templatefile is not None, "No template selected"
+        assert templatefile.suffix == ".tex", "Template must be a tex file"
 
     if docxtemplate is None:
         docxtemplate = getdocxTemplate(templatefile)
+        assert docxtemplate is None or docxtemplate.suffix == ".docx", "Docx template must be a docx file"
         if docxtemplate is None:
             print("No docx template found... Using default")
 
