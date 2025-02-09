@@ -25,8 +25,6 @@ $else$
 \RaggedRight
 $endif$
 
-\usepackage[norsk,german,american,bidi=default]{babel}
-
 \usepackage{csquotes} % Adds support for quotation?
 
 \usepackage{hyperref} % Needed for Pandoc sections, also hides the colorboxes on citations
@@ -64,24 +62,11 @@ $endif$
 
 $if(nicefont)$
 \usepackage{xcharter} % Sets font to a nice one
-$elseif(garamond)$
-\usepackage{ebgaramond}
 $else$
 \usepackage{mathptmx} % Sets times new roman as the font
 $endif$
 
 \usepackage{amssymb} % Adds div symbols like \square
-
-% Add the option of syllogisms
-\newcommand\syllogism[3][]{%
-  \begin{center}
-  \def\tmp{#1}%
-  \ifx\tmp\empty\else(#1)\quad\fi
-  \begin{tabular}{@{}l@{}}
-    #2\\\hline#3\quad
-  \end{tabular}
-  \end{center}
-}
 
 \setcounter{secnumdepth}{0} %disables the section numbering
 
@@ -101,7 +86,7 @@ $endif$
 
 
 
-\usepackage[skip=0pt, indent=20pt]{parskip} % Sets the spacing between paragraphs
+\usepackage[skip=15pt, indent=0pt]{parskip} % Sets the spacing between paragraphs
 
 
 \title{$title$}
@@ -112,10 +97,10 @@ $endif$
 \usepackage{fancyhdr}
 \fancypagestyle{plain}{%  the preset of fancyhdr 
     \fancyhf{} % clear all header and footer fields
-    \fancyfoot[L]{$class$}
+    \fancyfoot[L]{\thedate}
     \fancyfoot[R]{\thepage}
-    \fancyhead[R]{\theauthor}
-    \fancyhead[L]{\thedate}
+    \fancyhead[R]{$class$}
+    \fancyhead[L]{\theauthor}
 }
 \pagestyle{plain}
 
@@ -123,64 +108,15 @@ $endif$
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
   
-%%% Everything above here should be the same as default-setup.tex
-%% HOWEVER NOW I CHANGED IT SO IT IS NOT THE SAME
-
-
-
-
-% Fixes bibliography
-$if(chicago-a)$
-\usepackage[backend=biber]{biblatex-chicago}
-$elseif(apa7)$
-\usepackage[style=apa,backend=biber]{biblatex}
-$elseif(nocite)$
-$else$
-\usepackage[style=chicago-authordate,backend=biber]{biblatex}
-$endif$
-$if(nocite)$
-$else$
-\addbibresource{C:/Users/sfgar/Desktop/Mitt bibliotek.bib}
-$endif$
-
-\usepackage{fancyvrb}
-\VerbatimFootnotes % allow verbatim text in footnotes
-
-% Make links footnotes instead of hotlinks:
-% \DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
-
-\usepackage{csquotes}
-
 \begin{document}
 
-  $if(airytitle)$
-  \vspace*{15pt}
-  $endif$
-  \begin{center}
-    {\large \thetitle \par}
-    $if(question)${\emph{$question$} \par}$endif$
-    \vskip 1em
-  \end{center}
-  $if(airytitle)$
-  \vspace*{10pt}
-  $endif$
-
   $body$
-
 
   $if(signature)$
   \begin{flushright}
     \vskip 2em
     $signature$
   \end{flushright}
-  $endif$
-
-  
-  $if(nocite)$
-  $else$
-  %\vskip 3em
-  \newpage
-  \printbibliography[title={Bibliography}]
   $endif$
 
 \end{document}
