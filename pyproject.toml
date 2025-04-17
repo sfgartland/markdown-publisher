@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "markdown-publisher"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Severin Gartland <sfgartland@hotmail.com>"]
 readme = "README.md"
@@ -18,3 +18,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 markdown-publisher = "markdown_publisher.main:cli"
+mp = "markdown_publisher.main:cli"

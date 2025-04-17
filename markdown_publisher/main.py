@@ -66,16 +66,16 @@ def getdocxTemplate(templatePath):
 def genPDF(mdfile, template):
     parentDir = mdfile.parent
 
-    outputname = parentDir / mdfile.stem
+    outputname =  mdfile.stem
     workdir = parentDir / "pandoc-workdir"
     workdir.mkdir(exist_ok=True)
     auxfolder = workdir / "latex-aux"
 
     os.system(
-        f'pandoc --from markdown+pipe_tables+footnotes+inline_notes -s "{mdfile}"  -o "{outputname}.tex" --template "{template}" --biblatex'
+        f'pandoc --from markdown+pipe_tables+footnotes+inline_notes -s "{mdfile}"  -o "{parentDir / outputname}.tex" --template "{template}" --biblatex'
     )
     os.system(
-        f'latexmk -xelatex -output-directory="{workdir}" -auxdir="{auxfolder}" "{outputname}.tex"'
+        f'latexmk -xelatex -output-directory="{workdir}" -auxdir="{auxfolder}" "{parentDir / outputname}.tex"'
     )
     shutil.copy(workdir / f"{outputname}.pdf", parentDir / f"{outputname}.pdf")
 
